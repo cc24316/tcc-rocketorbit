@@ -14,6 +14,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -210,7 +212,7 @@ fun SplashScreen(onFinish: () -> Unit) {
                     )
                     .scale(brilho)
                     .alpha(0.7f * alpha)
-            )
+         )
         }
     }
 }
@@ -251,8 +253,6 @@ fun TeladeIncio(onFinish: () -> Unit) {
 @Composable
 fun paginaLongin() {
 
-
-
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -266,24 +266,65 @@ fun paginaLongin() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Text(
-                text = "Tela de Login",
-                fontSize = 28.sp
+
+            Image(
+                painter = painterResource(R.drawable.fogo),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(75.dp)
+                    .offset(
+                        x = (-50).dp,
+                        y = 80.dp
+                    )
+                    .rotate(-140f)
+            )
+
+            Image(
+                painter = painterResource(R.drawable.foguete),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(220.dp)
+                    .offset(
+                        x = (2).dp,
+                        y = -150.dp
+
+                    )
+
+
+            )
+
+            Image(
+                painter = painterResource(R.drawable.brilho),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(280.dp)
+                    .offset(
+                        x = -6.dp,
+                        y = -380.dp
+                    )
+                    .alpha(0.7f)
             )
 
             Spacer(modifier = Modifier.height(20.dp))
 
 
+
+            Button(
+                onClick = {
+
+                }
+            ) {
+                Text("Entrar")
+            }
+
+
+
+
+
+
         }
     }
 }
-
-
-
-
-
-
-
 
 
 //fundo
