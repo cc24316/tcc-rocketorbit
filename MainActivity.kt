@@ -14,8 +14,15 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,11 +37,14 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import kotlin.math.sin
+
+import androidx.compose.material3.Icon
 
 class MainActivity : ComponentActivity() {
 
@@ -274,7 +284,7 @@ fun paginaLongin() {
                     .size(75.dp)
                     .offset(
                         x = (-50).dp,
-                        y = 80.dp
+                        y = 135.dp
                     )
                     .rotate(-140f)
             )
@@ -285,8 +295,8 @@ fun paginaLongin() {
                 modifier = Modifier
                     .size(220.dp)
                     .offset(
-                        x = (2).dp,
-                        y = -150.dp
+                        x = (3).dp,
+                        y = -100.dp
 
                     )
 
@@ -299,24 +309,131 @@ fun paginaLongin() {
                 modifier = Modifier
                     .size(280.dp)
                     .offset(
-                        x = -6.dp,
-                        y = -380.dp
+                        x = -2.dp,
+                        y = -325.dp
                     )
                     .alpha(0.7f)
             )
+        }
 
             Spacer(modifier = Modifier.height(20.dp))
 
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(40.dp)
+                    .offset(
+                        x = 20.dp,
+                        y = 350.dp
+                    )
+
+            ) {
 
 
-            Button(
-                onClick = {
+                var Nome by remember {
+                    mutableStateOf("")
+                }
+
+                OutlinedTextField(
+                    value = Nome,
+                    onValueChange = {
+                        Nome = it
+                    },
+                    label = {
+                        Text("Usuário")
+                    },
+
+
+                    shape = RoundedCornerShape(20.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+
+                        focusedLabelColor = Color(0xFFB39DDB),
+                        unfocusedLabelColor = Color(0xFFB39DDB),
+                        cursorColor = Color(0xFF9575CD)
+                    )
+                )
+
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                var Senha by remember {
+                    mutableStateOf("")
+                }
+
+
+                OutlinedTextField(
+                    value = Senha,
+                    onValueChange = {
+                        Senha = it
+                    },
+                    label = {
+                        Text("Senha")
+                    },
+
+
+                    shape = RoundedCornerShape(20.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+
+                        focusedLabelColor = Color(0xFFB39DDB),
+                        unfocusedLabelColor = Color(0xFFB39DDB),
+                        cursorColor = Color(0xFF9575CD)
+                    )
+                )
+
+
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+
+                Text(
+                    text = "Esqueceu sua senha?",
+                    fontSize = 13.sp,
+                    color = Color(0xFF4D3E79),
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier.offset(
+                        x = 80.dp
+                    )
+
+                )
+
+
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Button(
+
+                    onClick = {},
+                    modifier = Modifier
+                        .width(290.dp)
+                        .height(50.dp)
+                ) {
+                    Text("Entrar")
 
                 }
-            ) {
-                Text("Entrar")
-            }
 
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+
+                Text(
+                    text = "-------ou continue com-------",
+                    fontSize = 15.sp,
+                    color = Color(0xFF8D82AD),
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier.offset(
+                        x = 70.dp
+                    )
+
+
+
+                )
+
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+
+
+            }
 
 
 
@@ -324,7 +441,7 @@ fun paginaLongin() {
 
         }
     }
-}
+
 
 
 //fundo
