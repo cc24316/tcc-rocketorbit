@@ -421,7 +421,7 @@ fun paginaLongin() {
                     color = Color(0xFF8D82AD),
                     fontWeight = FontWeight.Normal,
                     modifier = Modifier.offset(
-                        x = 70.dp
+                        x = 100.dp
                     )
 
 
@@ -430,6 +430,18 @@ fun paginaLongin() {
 
 
                 Spacer(modifier = Modifier.height(15.dp))
+
+
+                 Button(
+
+                onClick = {},
+                modifier = Modifier
+                    .width(290.dp)
+                    .height(50.dp)
+            ) {
+                Text("\uD83C\uDD56  Entrar com o google")
+
+            }
 
 
 
