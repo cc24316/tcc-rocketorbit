@@ -10,6 +10,7 @@ object RetrofitClient {
     val api: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
