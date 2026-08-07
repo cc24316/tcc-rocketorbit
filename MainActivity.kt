@@ -1,17 +1,13 @@
-package com.example.tcc
+package com.example.orbitrockettcc
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import com.example.tcc.Screens.CadastroScreen
-import com.example.tcc.Screens.HomeScreen
-import com.example.tcc.Screens.LoginScreen
-
-import com.example.tcc.Screens.TeladeIncio
+import androidx.compose.runtime.*
+import com.example.orbitrockettcc.Screens.Logar.CadastroScreen
+import com.example.orbitrockettcc.Screens.Logar.LoginScreen
+import com.example.orbitrockettcc.Screens.Rodape.AplicarRodape
+import com.example.orbitrockettcc.ui.theme.OrbitRocketTCCTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -20,32 +16,39 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-            var telaAtual by remember {
-                mutableStateOf("home")
-            }
+            OrbitRocketTCCTheme {
 
-            when (telaAtual) {
-
-                "home" -> HomeScreen(
-                    onFinish = { telaAtual = "inicio" }
-                )
-
-                "inicio" -> TeladeIncio(//chama funcao
-                    onFinish = { telaAtual = "login" }
-                )
-
-                "login" -> {
-                    LoginScreen(
-                        onFinish = { telaAtual = "dashboard" },
-                        onCadastro = { telaAtual = "cadastro" }
-                    )
+                var telaAtual by remember {
+                    mutableStateOf("login")
                 }
 
-                "cadastro" -> {
-                    CadastroScreen(
-                        onCadastroSucesso = { telaAtual = "login" },
-                        onVoltarLogin = { telaAtual = "login" }
+                when (telaAtual) {
+
+                    "login" -> LoginScreen(
+                        onFinish = {
+                            telaAtual = "principal"
+                        },
+                        onCadastro = {
+                            telaAtual = "cadastro"
+                        }
                     )
+
+
+                    "cadastro" -> CadastroScreen(
+                        onCadastroSucesso = {
+                            telaAtual = "login"
+                        },
+                        onVoltarLogin = {
+                            telaAtual = "login"
+                        }
+                    )
+
+
+                    "principal" -> {
+
+                        AplicarRodape()
+
+                    }
                 }
             }
         }
