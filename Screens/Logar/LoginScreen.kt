@@ -1,4 +1,5 @@
-package com.example.rocketorbittcc.Screens.Logar
+package com.example.orbitrockettcc.Screens.Logar
+
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -32,11 +33,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.rocketorbittcc.API.RetrofitClient
-import com.example.rocketorbittcc.API.UsuarioRequest
-import com.example.rocketorbittcc.R
-import com.example.rocketorbittcc.Screens.fundoEstrela
+import com.example.orbitrockettcc.API.RetrofitClient
+import com.example.orbitrockettcc.API.UsuarioRequest
+import com.example.orbitrockettcc.R
+import com.example.orbitrockettcc.Screens.fundoEstrela
 import kotlinx.coroutines.launch
+
+
+
+
 
 
 @Composable
@@ -45,11 +50,14 @@ fun LoginScreen(
     onCadastro: () -> Unit
 ) {
 
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
 
+
         fundoEstrela()
+
 
         Column(
             modifier = Modifier
@@ -57,6 +65,8 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+
 
 
             Image(
@@ -71,6 +81,7 @@ fun LoginScreen(
                     .rotate(-140f)
             )
 
+
             Image(
                 painter = painterResource(R.drawable.foguete),
                 contentDescription = null,
@@ -80,10 +91,14 @@ fun LoginScreen(
                         x = (3).dp,
                         y = -100.dp
 
+
                     )
 
 
+
+
             )
+
 
             Image(
                 painter = painterResource(R.drawable.brilho),
@@ -98,7 +113,9 @@ fun LoginScreen(
             )
         }
 
+
         Spacer(modifier = Modifier.height(20.dp))
+
 
         Column(
             modifier = Modifier
@@ -109,12 +126,16 @@ fun LoginScreen(
                     y = 350.dp
                 )
 
+
         ) {
+
+
 
 
             var Nome by remember {
                 mutableStateOf("")
             }
+
 
             OutlinedTextField(
                 value = Nome,
@@ -126,8 +147,11 @@ fun LoginScreen(
                 },
 
 
+
+
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
 
                     focusedLabelColor = Color(0xFFB39DDB),
                     unfocusedLabelColor = Color(0xFFB39DDB),
@@ -136,11 +160,16 @@ fun LoginScreen(
             )
 
 
+
+
             Spacer(modifier = Modifier.height(10.dp))
+
 
             var Senha by remember {
                 mutableStateOf("")
             }
+
+
 
 
             OutlinedTextField(
@@ -153,8 +182,11 @@ fun LoginScreen(
                 },
 
 
+
+
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
 
                     focusedLabelColor = Color(0xFFB39DDB),
                     unfocusedLabelColor = Color(0xFFB39DDB),
@@ -164,7 +196,12 @@ fun LoginScreen(
 
 
 
+
+
+
             Spacer(modifier = Modifier.height(15.dp))
+
+
 
 
             Text(
@@ -176,23 +213,33 @@ fun LoginScreen(
                     x = 80.dp
                 )
 
+
             )
+
+
+
 
 
 
             Spacer(modifier = Modifier.height(20.dp))
 
+
             val coroutineScope = rememberCoroutineScope() // ← antes do Column
+
 
             Button(
                 onClick = {
                     coroutineScope.launch {
                         try {
                             val resposta = RetrofitClient.api.login(
-                                UsuarioRequest(nome = Nome, senha = Senha)
+                                UsuarioRequest(
+                                    nome = Nome,
+                                    email = "",
+                                    senha = Senha
+                                )
                             )
                             if (resposta.isSuccessful) {
-                                onFinish() // ← navega para próxima tela
+                                onFinish()
                             }
                         } catch (e: Exception) {
                             // erro de conexão
@@ -207,7 +254,11 @@ fun LoginScreen(
             }
 
 
+
+
             Spacer(modifier = Modifier.height(15.dp))
+
+
 
 
             Text(
@@ -220,13 +271,20 @@ fun LoginScreen(
                 )
 
 
+
+
             )
+
+
 
 
             Spacer(modifier = Modifier.height(15.dp))
 
 
+
+
             Button(
+
 
                 onClick = {},
                 modifier = Modifier
@@ -235,8 +293,10 @@ fun LoginScreen(
             ) {
                 Text("\uD83C\uDD56  Entrar com o google")
 
+
             }
             Spacer(modifier = Modifier.height(15.dp))
+
 
             Text(
                 color = Color(0xFF8D82AD),
@@ -249,7 +309,13 @@ fun LoginScreen(
             )
         }
 
+
     }
+
+
+
+
+
 
 
 
