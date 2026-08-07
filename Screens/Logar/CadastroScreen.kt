@@ -1,5 +1,4 @@
-package com.example.rocketorbittcc.Screens.Logar
-
+package com.example.orbitrockettcc.Screens.Logar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -33,11 +32,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.rocketorbittcc.API.RetrofitClient
-import com.example.rocketorbittcc.API.UsuarioRequest
-import com.example.rocketorbittcc.R
-import com.example.rocketorbittcc.Screens.fundoEstrela
+import com.example.orbitrockettcc.API.RetrofitClient
+import com.example.orbitrockettcc.API.UsuarioRequest
+import com.example.orbitrockettcc.R
+import com.example.orbitrockettcc.Screens.fundoEstrela
 import kotlinx.coroutines.launch
+
 
 @Composable
 fun CadastroScreen(
@@ -45,7 +45,9 @@ fun CadastroScreen(
     onVoltarLogin: () -> Unit
 ) {
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
 
         fundoEstrela()
 
@@ -55,50 +57,91 @@ fun CadastroScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Image(
                 painter = painterResource(R.drawable.fogo),
                 contentDescription = null,
                 modifier = Modifier
                     .size(75.dp)
-                    .offset(x = (-50).dp, y = 135.dp)
+                    .offset(
+                        x = (-50).dp,
+                        y = 135.dp
+                    )
                     .rotate(-140f)
             )
+
+
             Image(
                 painter = painterResource(R.drawable.foguete),
                 contentDescription = null,
                 modifier = Modifier
                     .size(220.dp)
-                    .offset(x = 3.dp, y = (-100).dp)
+                    .offset(
+                        x = 3.dp,
+                        y = (-100).dp
+                    )
             )
+
+
             Image(
                 painter = painterResource(R.drawable.brilho),
                 contentDescription = null,
                 modifier = Modifier
                     .size(280.dp)
-                    .offset(x = (-2).dp, y = (-325).dp)
+                    .offset(
+                        x = (-2).dp,
+                        y = (-325).dp
+                    )
                     .alpha(0.7f)
             )
         }
+
 
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(40.dp)
-                .offset(x = 20.dp, y = 350.dp)
+                .offset(
+                    x = 20.dp,
+                    y = 350.dp
+                )
         ) {
 
-            var Nome by remember { mutableStateOf("") }
-            var Email by remember { mutableStateOf("") }
-            var Senha by remember { mutableStateOf("") }
-            var ConfirmarSenha by remember { mutableStateOf("") }
-            var mensagemErro by remember { mutableStateOf("") }
+
+            var Nome by remember {
+                mutableStateOf("")
+            }
+
+            var Email by remember {
+                mutableStateOf("")
+            }
+
+            var Senha by remember {
+                mutableStateOf("")
+            }
+
+            var ConfirmarSenha by remember {
+                mutableStateOf("")
+            }
+
+            var mensagemErro by remember {
+                mutableStateOf("")
+            }
+
+
             val coroutineScope = rememberCoroutineScope()
+
+
 
             OutlinedTextField(
                 value = Nome,
-                onValueChange = { Nome = it },
-                label = { Text("Usuário") },
+                onValueChange = {
+                    Nome = it
+                },
+                label = {
+                    Text("Usuário")
+                },
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedLabelColor = Color(0xFFB39DDB),
@@ -107,12 +150,21 @@ fun CadastroScreen(
                 )
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+
+            Spacer(
+                modifier = Modifier.height(10.dp)
+            )
+
+
 
             OutlinedTextField(
                 value = Email,
-                onValueChange = { Email = it },
-                label = { Text("Email") },
+                onValueChange = {
+                    Email = it
+                },
+                label = {
+                    Text("Email")
+                },
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedLabelColor = Color(0xFFB39DDB),
@@ -121,12 +173,22 @@ fun CadastroScreen(
                 )
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+
+
+            Spacer(
+                modifier = Modifier.height(10.dp)
+            )
+
+
 
             OutlinedTextField(
                 value = Senha,
-                onValueChange = { Senha = it },
-                label = { Text("Senha") },
+                onValueChange = {
+                    Senha = it
+                },
+                label = {
+                    Text("Senha")
+                },
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedLabelColor = Color(0xFFB39DDB),
@@ -135,12 +197,22 @@ fun CadastroScreen(
                 )
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+
+
+            Spacer(
+                modifier = Modifier.height(10.dp)
+            )
+
+
 
             OutlinedTextField(
                 value = ConfirmarSenha,
-                onValueChange = { ConfirmarSenha = it },
-                label = { Text("Confirmar Senha") },
+                onValueChange = {
+                    ConfirmarSenha = it
+                },
+                label = {
+                    Text("Confirmar Senha")
+                },
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedLabelColor = Color(0xFFB39DDB),
@@ -149,64 +221,164 @@ fun CadastroScreen(
                 )
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
 
-            // Mensagem de erro
+
+            Spacer(
+                modifier = Modifier.height(10.dp)
+            )
+
+
+
             if (mensagemErro.isNotEmpty()) {
+
                 Text(
                     text = mensagemErro,
                     color = Color.Red,
                     fontSize = 12.sp
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+
+                Spacer(
+                    modifier = Modifier.height(8.dp)
+                )
             }
+
+
 
             Button(
                 onClick = {
-                    // Validações básicas
+
+
                     when {
-                        Nome.isEmpty() || Senha.isEmpty() || Email.isEmpty() -> {
+
+                        Nome.isEmpty() ||
+                                Email.isEmpty() ||
+                                Senha.isEmpty() -> {
+
                             mensagemErro = "Preencha todos os campos"
+
                         }
+
+
                         Senha != ConfirmarSenha -> {
+
                             mensagemErro = "As senhas não coincidem"
+
                         }
+
+
                         else -> {
+
+
                             coroutineScope.launch {
+
+
                                 try {
-                                    val resposta = RetrofitClient.api.cadastrar(
-                                        UsuarioRequest(nome = Nome, senha = Senha)
-                                    )
+
+
+                                    val resposta =
+                                        RetrofitClient.api.cadastrar(
+                                            UsuarioRequest(
+                                                nome = Nome,
+                                                email = Email,
+                                                senha = Senha
+                                            )
+                                        )
+
+
+
                                     if (resposta.isSuccessful) {
+
+
+                                        println(
+                                            "SUCESSO: ${resposta.body()}"
+                                        )
+
+
+                                        // ENTRA NA MAIN
                                         onCadastroSucesso()
+
+
+
                                     } else {
-                                        mensagemErro = "Usuário já existe"
+
+
+                                        mensagemErro =
+                                            resposta.errorBody()
+                                                ?.string()
+                                                ?: "Erro HTTP"
+
+
+                                        println(
+                                            "ERRO HTTP: ${resposta.code()}"
+                                        )
+
                                     }
+
+
+
                                 } catch (e: Exception) {
-                                    mensagemErro = "Erro de conexão"
+
+
+                                    mensagemErro =
+                                        "Erro de conexão: ${e.message}"
+
+
+                                    println(
+                                        e.stackTraceToString()
+                                    )
+
                                 }
+
                             }
+
                         }
+
                     }
+
                 },
+
+
                 modifier = Modifier
                     .width(290.dp)
                     .height(50.dp)
+
             ) {
+
                 Text("Cadastrar")
+
             }
 
-            Spacer(modifier = Modifier.height(15.dp))
+
+
+            Spacer(
+                modifier = Modifier.height(15.dp)
+            )
+
+
 
             Text(
+
                 text = "Já tem uma conta? Entrar",
+
                 fontSize = 15.sp,
+
                 color = Color(0xFF8D82AD),
+
                 fontWeight = FontWeight.Normal,
+
                 modifier = Modifier
                     .offset(x = 100.dp)
-                    .clickable { onVoltarLogin() }
+                    .clickable {
+
+                        onVoltarLogin()
+
+                    }
+
             )
+
+
         }
+
     }
+
 }
