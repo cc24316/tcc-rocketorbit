@@ -199,7 +199,8 @@ fun MissaoScreen() {
                                     tarefas.add(
                                         Tarefa(
                                             nome = nomeTarefa,
-                                            duracao = duracao
+                                            duracao = duracao,
+                                            planeta = planetaSelecionado
                                         )
                                     )
                                     fecharFormulario()
