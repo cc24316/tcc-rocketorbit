@@ -177,6 +177,16 @@ fun TempoScreen(
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
                 Text(
+                    text = "Indo para ${tarefa.planeta}",
+                    fontSize = 18.sp,
+                    color = Color(0xFFFFD54F),
+                    fontWeight = FontWeight.SemiBold,
+                    textAlign = TextAlign.Center
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+    
+                Text(
                     text = tarefa.nome,
                     fontSize = 26.sp,
                     color = Color.White,
