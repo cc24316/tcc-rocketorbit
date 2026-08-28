@@ -3,6 +3,7 @@ package com.example.rocketorbittcc.Models
 data class Tarefa(
     val nome: String,
     val duracao: String
+    val planeta: String
 ) {
     companion object {
 
