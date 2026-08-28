@@ -46,6 +46,7 @@ import com.example.rocketorbittcc.Screens.fundoEstrela
 import kotlinx.coroutines.delay
 import kotlin.math.cos
 import kotlin.math.sin
+import com.example.orbitrockettcc.Screens.Perfil.adicionarEstrela
 
 private fun duracaoParaSegundos(duracao: String): Int {
     val minutos = duracao.toIntOrNull() ?: 25
@@ -74,7 +75,7 @@ fun TempoScreen(
             if (!missaoConcluida) {
                 missaoConcluida = true
                 OfensivaManager.registrarConclusao(context)
-                OfensivaManager.adicionarEstrela(context)
+                adicionarEstrela(context)
             }
         }
     }
