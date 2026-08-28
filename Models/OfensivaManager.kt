@@ -12,6 +12,8 @@ object OfensivaManager {
     private const val PREFS = "rocketorbit"
     private const val KEY_OFENSIVA = "ofensiva"
     private const val KEY_ULTIMO_DIA = "ultimo_dia"
+    private const val KEY_STARS = "stars"
+    private const val TOTAL_ESTRELAS = 7
 
     private val formato = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
