@@ -74,6 +74,7 @@ fun TempoScreen(
             if (!missaoConcluida) {
                 missaoConcluida = true
                 OfensivaManager.registrarConclusao(context)
+                OfensivaManager.adicionarEstrela(context)
             }
         }
     }
