@@ -176,7 +176,7 @@ fun HomeScreen(
             // Card da ofensiva
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF9575CD))
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF4E3279))
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Column(Modifier.padding(16.dp)) {
@@ -215,7 +215,7 @@ fun HomeScreen(
             // Card da constelação (estrelas que faltam)
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF9575CD))
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF4E3279))
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Column(Modifier.padding(16.dp)) {
@@ -241,7 +241,7 @@ fun HomeScreen(
             // Card de incentivo
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF9575CD))
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF4E3279))
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Column(Modifier.padding(16.dp)) {
