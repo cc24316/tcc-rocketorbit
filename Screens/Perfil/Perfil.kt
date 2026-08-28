@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.rocketorbittcc.Models.OfensivaManager
 import java.util.Calendar
+import com.example.rocketorbittcc.Screens.fundoEstrela
 
 // Total de estrelas necessárias pra completar a constelação da semana
 private const val TOTAL_ESTRELAS = 7
@@ -87,10 +88,15 @@ fun HomeScreen(
     // Quantas estrelas ainda faltam pra completar a semana
     val faltam = (TOTAL_ESTRELAS - estrelas).coerceAtLeast(0)
 
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+    
+    fundoEstrela()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF0B0B1A))
             .statusBarsPadding()
             .verticalScroll(rememberScrollState())
     ) {
@@ -132,7 +138,7 @@ fun HomeScreen(
                         )
                     }
 
-                    // Selo de ofensiva, ex: "🔥 5"
+                    // Selo de ofensiva, ex: "5"
 
                 }
 
