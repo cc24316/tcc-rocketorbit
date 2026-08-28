@@ -49,4 +49,16 @@ object OfensivaManager {
 
         return nova
     }
+
+    fun adicionarEstrela(context: Context): Int {
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val atual = prefs.getInt(KEY_STARS, 0)
+        val nova = (atual + 1).coerceAtMost(TOTAL_ESTRELAS)
+
+        prefs.edit()
+            .putInt(KEY_STARS, nova)
+            .apply()
+
+        return nova
+    }
 }
