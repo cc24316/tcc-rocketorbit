@@ -186,7 +186,7 @@ fun TempoScreen(
 
                 if (missaoConcluida) {
                     Text(
-                        text = "Missão concluída! Ofensiva atualizada 🔥",
+                        text = "Missão concluída! Ofensiva atualizada ⭐",
                         color = Color(0xFFFFD54F),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold,
