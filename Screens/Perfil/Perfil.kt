@@ -23,6 +23,22 @@ import java.util.Calendar
 // Total de estrelas necessárias pra completar a constelação da semana
 private const val TOTAL_ESTRELAS = 7
 
+fun adicionarEstrela(context: Context) {
+    val prefs = context.getSharedPreferences(
+        "rocketorbit",
+        Context.MODE_PRIVATE
+    )
+
+    val estrelas = prefs.getInt("stars", 0)
+
+    prefs.edit()
+        .putInt(
+            "stars",
+            (estrelas + 1).coerceAtMost(TOTAL_ESTRELAS)
+        )
+        .apply()
+}
+
 
 @Composable
 fun HomeScreenRoot() {
