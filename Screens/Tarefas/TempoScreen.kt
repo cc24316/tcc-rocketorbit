@@ -1,4 +1,4 @@
-package com.example.orbitrockettcc.Screens.Tarefas
+package com.example.rocketorbittcc.Screens.Tarefas
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -41,15 +41,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.orbitrockettcc.Models.OfensivaManager
-import com.example.orbitrockettcc.Models.Tarefa
-import com.example.orbitrockettcc.R
-import com.example.orbitrockettcc.Screens.Perfil.SeloOfensiva
-import com.example.orbitrockettcc.Screens.fundoEstrela
+import com.example.rocketorbittcc.Models.OfensivaManager
+import com.example.rocketorbittcc.Models.Tarefa
+import com.example.rocketorbittcc.R
+import com.example.rocketorbittcc.Screens.Perfil.SeloOfensiva
+import com.example.rocketorbittcc.Screens.Perfil.adicionarEstrela
+import com.example.rocketorbittcc.Screens.fundoEstrela
 import kotlinx.coroutines.delay
 import kotlin.math.cos
 import kotlin.math.sin
-import com.example.orbitrockettcc.Screens.Perfil.adicionarEstrela
 
 private fun duracaoParaSegundos(duracao: String): Int {
     val minutos = duracao.toIntOrNull() ?: 25
@@ -63,9 +63,18 @@ fun TempoScreen(
 ) {
     val context = LocalContext.current
 
-    var tempoRestante by remember(tarefa) { mutableStateOf(duracaoParaSegundos(tarefa.duracao)) }
-    var rodando by remember { mutableStateOf(false) }
-    var missaoConcluida by remember(tarefa) { mutableStateOf(false) }
+    var tempoRestante by remember(tarefa) {
+        mutableStateOf(duracaoParaSegundos(tarefa.duracao))
+    }
+
+    var rodando by remember {
+        mutableStateOf(false)
+    }
+
+    var missaoConcluida by remember(tarefa) {
+        mutableStateOf(false)
+    }
+
     val ofensiva = OfensivaManager.getOfensivaAtual(context)
 
     LaunchedEffect(rodando, tarefa) {
@@ -73,8 +82,10 @@ fun TempoScreen(
             delay(1000L)
             tempoRestante--
         }
+
         if (tempoRestante == 0) {
             rodando = false
+
             if (!missaoConcluida) {
                 missaoConcluida = true
                 OfensivaManager.registrarConclusao(context)
@@ -87,7 +98,9 @@ fun TempoScreen(
     val segundos = tempoRestante % 60
     val tempoFormatado = "%02d:%02d".format(minutos, segundos)
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
 
         fundoEstrela()
 
@@ -111,13 +124,18 @@ fun TempoScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 70.dp, bottom = 50.dp, start = 24.dp, end = 24.dp),
+                .padding(
+                    top = 70.dp,
+                    bottom = 50.dp,
+                    start = 24.dp,
+                    end = 24.dp
+                ),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
 
             Text(
-                text = "Persista na sua missâo!",
+                text = "Persista na sua missão!",
                 fontSize = 26.sp,
                 color = Color.White,
                 fontWeight = FontWeight.SemiBold,
@@ -128,9 +146,15 @@ fun TempoScreen(
                 modifier = Modifier.size(260.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Canvas(modifier = Modifier.fillMaxSize()) {
+
+                Canvas(
+                    modifier = Modifier.fillMaxSize()
+                ) {
                     val raio = size.minDimension / 2
-                    val centro = Offset(size.width / 2, size.height / 2)
+                    val centro = Offset(
+                        size.width / 2,
+                        size.height / 2
+                    )
 
                     drawCircle(
                         color = Color(0xFFF8F6F6).copy(alpha = 0.6f),
@@ -139,16 +163,33 @@ fun TempoScreen(
                         style = Stroke(width = 2.dp.toPx())
                     )
 
-                    fun pontoNaOrbita(anguloGraus: Float): Offset {
-                        val rad = Math.toRadians(anguloGraus.toDouble())
+                    fun pontoNaOrbita(
+                        anguloGraus: Float
+                    ): Offset {
+                        val rad = Math.toRadians(
+                            anguloGraus.toDouble()
+                        )
+
                         return Offset(
-                            x = centro.x + raio * cos(rad).toFloat(),
-                            y = centro.y + raio * sin(rad).toFloat()
+                            x = centro.x +
+                                raio * cos(rad).toFloat(),
+                            y = centro.y +
+                                raio * sin(rad).toFloat()
                         )
                     }
 
-                    drawCircle(Color.White, radius = 5.dp.toPx(), center = pontoNaOrbita(-90f))
-                    drawCircle(Color.White, radius = 4.dp.toPx(), center = pontoNaOrbita(0f))
+                    drawCircle(
+                        Color.White,
+                        radius = 5.dp.toPx(),
+                        center = pontoNaOrbita(-90f)
+                    )
+
+                    drawCircle(
+                        Color.White,
+                        radius = 4.dp.toPx(),
+                        center = pontoNaOrbita(0f)
+                    )
+
                     drawCircle(
                         Color(0xFFFFFFFF),
                         radius = 4.dp.toPx(),
@@ -161,27 +202,40 @@ fun TempoScreen(
                     contentDescription = null,
                     modifier = Modifier
                         .size(75.dp)
-                        .offset(x = (-50).dp, y = 55.dp)
+                        .offset(
+                            x = (-50).dp,
+                            y = 55.dp
+                        )
                         .rotate(-140f)
                 )
+
                 Image(
                     painter = painterResource(R.drawable.foguete),
                     contentDescription = null,
                     modifier = Modifier
                         .size(220.dp)
-                        .offset(x = 3.dp, y = (-25).dp)
+                        .offset(
+                            x = 3.dp,
+                            y = (-25).dp
+                        )
                 )
+
                 Image(
                     painter = painterResource(R.drawable.brilho),
                     contentDescription = null,
                     modifier = Modifier
                         .size(280.dp)
-                        .offset(x = (-2).dp, y = (-25).dp)
+                        .offset(
+                            x = (-2).dp,
+                            y = (-25).dp
+                        )
                         .alpha(0.7f)
                 )
             }
 
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
                 Text(
                     text = "Indo para ${tarefa.planeta}",
@@ -191,7 +245,9 @@ fun TempoScreen(
                     textAlign = TextAlign.Center
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(
+                    modifier = Modifier.height(8.dp)
+                )
 
                 Text(
                     text = tarefa.nome,
@@ -200,7 +256,10 @@ fun TempoScreen(
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(50.dp))
+
+                Spacer(
+                    modifier = Modifier.height(50.dp)
+                )
 
                 if (missaoConcluida) {
                     Text(
@@ -210,7 +269,10 @@ fun TempoScreen(
                         fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Spacer(
+                        modifier = Modifier.height(12.dp)
+                    )
                 }
 
                 Text(
@@ -226,20 +288,26 @@ fun TempoScreen(
                     fontWeight = FontWeight.Bold
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(
+                    modifier = Modifier.height(20.dp)
+                )
 
                 Button(
                     onClick = {
                         if (tempoRestante == 0) {
-                            tempoRestante = duracaoParaSegundos(tarefa.duracao)
+                            tempoRestante =
+                                duracaoParaSegundos(
+                                    tarefa.duracao
+                                )
+
                             missaoConcluida = false
                         }
+
                         rodando = !rodando
                     },
 
                     modifier = if (rodando) {
-                        Modifier
-                            .size(52.dp)
+                        Modifier.size(52.dp)
                     } else {
                         Modifier
                             .fillMaxWidth(0.75f)
@@ -271,7 +339,6 @@ fun TempoScreen(
                         color = Color.White,
                         fontSize = 16.sp
                     )
-
                 }
             }
         }
