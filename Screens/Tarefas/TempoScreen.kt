@@ -1,4 +1,4 @@
-package com.example.rocketorbittcc.Screens.Tarefas
+package com.example.orbitrockettcc.Screens.Tarefas
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -38,11 +41,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.rocketorbittcc.Models.OfensivaManager
-import com.example.rocketorbittcc.Models.Tarefa
-import com.example.rocketorbittcc.R
-import com.example.rocketorbittcc.Screens.Perfil.SeloOfensiva
-import com.example.rocketorbittcc.Screens.fundoEstrela
+import com.example.orbitrockettcc.Models.OfensivaManager
+import com.example.orbitrockettcc.Models.Tarefa
+import com.example.orbitrockettcc.R
+import com.example.orbitrockettcc.Screens.Perfil.SeloOfensiva
+import com.example.orbitrockettcc.Screens.fundoEstrela
 import kotlinx.coroutines.delay
 import kotlin.math.cos
 import kotlin.math.sin
@@ -146,7 +149,11 @@ fun TempoScreen(
 
                     drawCircle(Color.White, radius = 5.dp.toPx(), center = pontoNaOrbita(-90f))
                     drawCircle(Color.White, radius = 4.dp.toPx(), center = pontoNaOrbita(0f))
-                    drawCircle(Color(0xFFFFFFFF), radius = 4.dp.toPx(), center = pontoNaOrbita(200f))
+                    drawCircle(
+                        Color(0xFFFFFFFF),
+                        radius = 4.dp.toPx(),
+                        center = pontoNaOrbita(200f)
+                    )
                 }
 
                 Image(
@@ -185,7 +192,7 @@ fun TempoScreen(
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
-    
+
                 Text(
                     text = tarefa.nome,
                     fontSize = 26.sp,
@@ -197,7 +204,7 @@ fun TempoScreen(
 
                 if (missaoConcluida) {
                     Text(
-                        text = "Missão concluída! Ofensiva atualizada ⭐",
+                        text = "Missão concluída! Constelação atualizada ⭐",
                         color = Color(0xFFFFD54F),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -229,22 +236,42 @@ fun TempoScreen(
                         }
                         rodando = !rodando
                     },
-                    modifier = Modifier
-                        .fillMaxWidth(0.75f)
-                        .height(52.dp),
+
+                    modifier = if (rodando) {
+                        Modifier
+                            .size(52.dp)
+                    } else {
+                        Modifier
+                            .fillMaxWidth(0.75f)
+                            .height(52.dp)
+                    },
+
+                    shape = if (rodando) {
+                        CircleShape
+                    } else {
+                        RoundedCornerShape(16.dp)
+                    },
+
+                    contentPadding = PaddingValues(0.dp),
+
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF4D3373)
+                        containerColor = if (rodando) {
+                            Color(0xFFD30505)
+                        } else {
+                            Color(0xFF9575CD)
+                        }
                     )
                 ) {
                     Text(
                         text = when {
                             tempoRestante == 0 -> "Reiniciar"
-                            rodando -> "Pausar"
+                            rodando -> "SOS"
                             else -> "Iniciar Foco"
                         },
                         color = Color.White,
                         fontSize = 16.sp
                     )
+
                 }
             }
         }
