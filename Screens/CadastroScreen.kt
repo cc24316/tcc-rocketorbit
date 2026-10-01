@@ -96,7 +96,11 @@ fun CadastroScreen(
             OutlinedTextField(
                 value = Nome,
                 onValueChange = { Nome = it },
+                 textStyle = TextStyle(
+                    color = Color(0xFFB39DDB)
+                ),
                 label = { Text("Usuário") },
+                
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedLabelColor = Color(0xFFB39DDB),
@@ -110,6 +114,10 @@ fun CadastroScreen(
             OutlinedTextField(
                 value = Email,
                 onValueChange = { Email = it },
+                 textStyle = TextStyle(
+                    color = Color(0xFFB39DDB)
+                ),
+                
                 label = { Text("Email") },
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -124,6 +132,9 @@ fun CadastroScreen(
             OutlinedTextField(
                 value = Senha,
                 onValueChange = { Senha = it },
+                 textStyle = TextStyle(
+                    color = Color(0xFFB39DDB)
+                ),
                 label = { Text("Senha") },
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -138,6 +149,9 @@ fun CadastroScreen(
             OutlinedTextField(
                 value = ConfirmarSenha,
                 onValueChange = { ConfirmarSenha = it },
+                 textStyle = TextStyle(
+                    color = Color(0xFFB39DDB)
+                ),
                 label = { Text("Confirmar Senha") },
                 shape = RoundedCornerShape(20.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -202,7 +216,7 @@ fun CadastroScreen(
                 color = Color(0xFF8D82AD),
                 fontWeight = FontWeight.Normal,
                 modifier = Modifier
-                    .offset(x = 100.dp)
+                    .offset(x = 55.dp)
                     .clickable { onVoltarLogin() }
             )
         }
